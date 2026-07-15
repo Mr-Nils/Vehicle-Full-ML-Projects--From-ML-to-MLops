@@ -21,7 +21,9 @@
 #     raise MyException(e, sys) from e
 
 # --------------------------------------------------------------------------------
-
+import os
+from dotenv import load_dotenv
+load_dotenv()  # This loads the environment variables from your .env file
 from src.pipline.training_pipeline import TrainPipeline
 
 pipline = TrainPipeline()

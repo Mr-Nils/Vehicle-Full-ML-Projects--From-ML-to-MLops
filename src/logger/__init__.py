@@ -4,6 +4,9 @@ from logging.handlers import RotatingFileHandler
 from from_root import from_root
 from datetime import datetime
 
+# Silence verbose PyMongo debug/info logs
+logging.getLogger("pymongo").setLevel(logging.WARNING)
+
 # Constants for log configuration
 LOG_DIR = 'logs'
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
