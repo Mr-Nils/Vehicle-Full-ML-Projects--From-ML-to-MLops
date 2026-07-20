@@ -1,7 +1,7 @@
 import logging
 import os
 from logging.handlers import RotatingFileHandler
-from from_root import from_root
+from pathlib import Path
 from datetime import datetime
 
 # Silence verbose PyMongo debug/info logs
@@ -13,8 +13,9 @@ LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
 MAX_LOG_SIZE = 5 * 1024 * 1024  # 5 MB
 BACKUP_COUNT = 3  # Number of backup log files to keep
 
-# Construct log file path
-log_dir_path = os.path.join(from_root(), LOG_DIR)
+# Construct log file path using the repository root
+ROOT_DIR = Path(__file__).resolve().parents[2]
+log_dir_path = os.path.join(ROOT_DIR, LOG_DIR)
 os.makedirs(log_dir_path, exist_ok=True)
 log_file_path = os.path.join(log_dir_path, LOG_FILE)
 
